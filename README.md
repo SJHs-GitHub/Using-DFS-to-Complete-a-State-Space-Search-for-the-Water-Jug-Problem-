@@ -21,3 +21,37 @@ from the 8-gallon jug to the ground.
 The size of each jug is set by the user at the beginning of the program, as the values input for 'A:', 'B:' and 'C:'.
 
 The program can be run by running the JAR file from the command line.
+
+
+
+
+
+Data Structures used to complete this task:
+
+(Multiple solutions were created and compared, with this being the best one).
+
+Solution 3: The iterative solution, with HashMap.
+◊ This used the series of 12 if statements again, along with what was stored in the 
+closed list, to judge which successors could be generated and added to the open list.
+◊ This used the HashSet to store the closed list again.
+◊ This used the LinkedList to represent the open list (stack).
+◊ It also used a HashMap to track which states had been added to the open list
+(HashMap was used because it has constant access time so allows fast lookup). This
+worked by: when a successor was pushed onto the stack, it was also added to the 
+HashMap. Now, when a successor is being evaluated to see if it can be generated 
+(using the 12 rules to check viability, and the HashSet to see if has already been 
+explored), the HashMap is now also checked to see if that state is already waiting to 
+be explored in the open list. This means the HashSet doesn’t have to be checked 
+when a state is popped from the stack, but the state that is popped does need to be 
+removed from the HashMap, in addition to being added to the HashSet (closed list).
+The consequence of this is that, for inputs A=1234567, B=765432, C=3:
+- The first 1 million states were found in 9.5s (1.5s (19%) slower than in 
+solution 2).
+- The program ran out of heap space and crashed after finding 8.82 million 
+unique states (1.95 million (28%) more unique states found than in solution 
+2).
+◊ These results led me to choose Solution 3 as the preferred solution, as I believe the 
+19% increase in time to find the first 1 million states (due to adding and removing 
+from the HashMap) is outweighed by finding 28% more states in total (because the 
+stack is kept shorter due to not adding duplicates to it, meaning heap space runs out 
+after finding more unique states than it otherwise did in solution 2).
