@@ -20,7 +20,7 @@ from the 8-gallon jug to the ground.
 
 The size of each jug is set by the user at the beginning of the program, as the values input for 'A:', 'B:' and 'C:'.
 
-The program can be run by running the JAR file from the command line.
+The program can be run by running the JAR file (other file in this repo) from the command line.
 
 
 
